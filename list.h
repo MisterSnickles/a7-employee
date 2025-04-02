@@ -15,8 +15,9 @@ public:
     ~List();
 
     // member functions
-    void push(T);
-    void pop();
+    void insert(T, int);
+    void remove(int);
+    int getSize() const; // gets list size
     bool isEmpty() const;
     void print();
 };

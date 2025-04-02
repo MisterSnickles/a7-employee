@@ -14,22 +14,63 @@ List<T>::~List() {
 }
 
 template <typename T>
-void List<T>::push(T data) {
-    Node<T>* newNode = new Node(data);
-    newNode->next = head;
-    head = newNode;
+int List<T>::getSize() const {
+    int count = 0;
+    Node<T>* current = head;
+    while (current->next != nullptr) {
+        count++;
+        current = current->next;
+    }
+    return count;
 }
 
 template <typename T>
-void List<T>::pop() {
-    if (head == nullptr) {
-        std::cout << "List empty." << std::endl;
+void List<T>::insert(T data, int pos) {
+    int size = getSize();
+    if (pos < 0 || pos > size) {
+        std::cout << "Invalid position to insert data!" << std::endl;
+    }
+
+
+    Node<T>* newNode = new Node(data);
+    if (pos == head) {
+        newNode->next = head;
+        head = newNode;
+        return;
+    }
+
+    Node<T>* current = head
+    for (int i = 0; i < pos - 1; i++) {
+        current = current->next;
+    }
+    newNode->next = current->next;
+    current->next = newNode;
+}
+
+template <typename T>
+void List<T>::remove(int pos) {
+    if (head == nullptr || pos < 0 || pos >= getSize()) {
+        std::cout << "Invalid position, or list empty." << std::endl;
         return;
     }
 
     // create temp node : assign head to next node : delete temp
-    Node<T>* temp = head;
-    head = head->next;
+    Node<T>* temp;
+
+    if (pos == 0) {
+        temp = head;
+        head = head->next;
+        delete temp;
+        return;
+    }
+   
+    Node<T>* current = head
+    for (int i = 0; i < pos - 1; i++) {
+        current = current->next;
+    }
+
+    temp = current->next;
+    current->next = temp->next;
     delete temp;
 }
 
