@@ -17,6 +17,7 @@ public:
     // member functions
     void insert(T, int);
     void remove(int);
+    void pop();
     int getSize() const; // gets list size
     bool isEmpty() const;
     void print();

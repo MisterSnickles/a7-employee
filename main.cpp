@@ -3,6 +3,7 @@
 #include <fstream>
 #include <iomanip>
 #include <string>
+#include <cstdlib>
 
 using namespace std;
 
@@ -11,6 +12,8 @@ using namespace std;
 
 
 int main() {
+
+    srand(time(0));
 
     List<Employee> employees;
     // Open File
@@ -31,22 +34,24 @@ int main() {
         string standing, ssnID, firstName, lastName, id, position, department;
         int salary;
 
-        string str_salary = to_string(salary);
-
         if(ss >> standing >> ssnID >> firstName >> lastName >> position >> department >> salary) {
-            employees.push(Employee(standing, ssnID, firstName, lastName, position, department, salary));
+            int randPos = rand() % (employees.getSize() + 1);
+            employees.insert(Employee(standing, ssnID, firstName, lastName, position, department, salary), randPos);
         }
     }
 
+    fin.close();
+
     
     employees.print();
+    cout << "\n\n" << endl;
     
-    for (int i = 0; i < 8; i++) {
-        employees.pop();
+    while (!employees.isEmpty()) {
+        int randRemovePos = rand() % employees.getSize();
+        employees.remove(randRemovePos);
+        cout << "Removed from position " << randRemovePos << "\n" << endl;
+        employees.print();
     }
 
-    cout << "\n" << endl;
-    // should be 7 less employees with popping from last input starting with megan and ending with natalie
-    employees.print();
 
 }

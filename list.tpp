@@ -17,7 +17,7 @@ template <typename T>
 int List<T>::getSize() const {
     int count = 0;
     Node<T>* current = head;
-    while (current->next != nullptr) {
+    while (current != nullptr) {
         count++;
         current = current->next;
     }
@@ -29,22 +29,35 @@ void List<T>::insert(T data, int pos) {
     int size = getSize();
     if (pos < 0 || pos > size) {
         std::cout << "Invalid position to insert data!" << std::endl;
+        return;
     }
 
 
     Node<T>* newNode = new Node(data);
-    if (pos == head) {
+    if (pos == 0) {
         newNode->next = head;
         head = newNode;
         return;
     }
 
-    Node<T>* current = head
+    Node<T>* current = head;
     for (int i = 0; i < pos - 1; i++) {
         current = current->next;
     }
     newNode->next = current->next;
     current->next = newNode;
+}
+
+template <typename T>
+void List<T>::pop() {
+    if (head == nullptr) {
+        std::cout << "Error. List is empty." << std::endl;
+        return;
+    }
+
+    Node<T>* temp = head;
+    head = head->next;
+    delete temp;
 }
 
 template <typename T>
@@ -64,7 +77,7 @@ void List<T>::remove(int pos) {
         return;
     }
    
-    Node<T>* current = head
+    Node<T>* current = head;
     for (int i = 0; i < pos - 1; i++) {
         current = current->next;
     }
