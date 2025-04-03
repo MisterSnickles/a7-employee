@@ -42,15 +42,15 @@ int main() {
 
     fin.close();
 
-    
+    cout << "This is the full list of employees. --------------------" << endl;
     employees.print();
     cout << "\n\n" << endl;
     
     while (!employees.isEmpty()) {
         int randRemovePos = rand() % employees.getSize();
         employees.remove(randRemovePos);
-        cout << "Removed from position " << randRemovePos << "\n" << endl;
         employees.print();
+        cout << "Removed from position " << randRemovePos << "\n" << endl;   
     }
 
 
