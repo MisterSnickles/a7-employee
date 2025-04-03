@@ -4,10 +4,13 @@
 #include <iostream>
 
 template <typename T>
-List<T>::List() : head(nullptr) {}
+List<T>::List() : head(nullptr) {
+    std::cout << "List constructor called this " << this << std::endl;
+}
 
 template <typename T>
 List<T>::~List() {
+    std::cout << "List destructor called this " << this << std::endl;
     while (head != nullptr) {
         pop();
     }

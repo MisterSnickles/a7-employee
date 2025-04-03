@@ -29,6 +29,7 @@ int main() {
 
     // read from file : store variables arrival, duration, type, plate : construct car object from those variables
     // depatureTime is calculated during car object construction
+    cout << "This is the start of random insertion of employees -----------------" << endl;
     while(getline(fin, line)) {
         stringstream ss(line);
         string standing, ssnID, firstName, lastName, id, position, department;
@@ -37,6 +38,8 @@ int main() {
         if(ss >> standing >> ssnID >> firstName >> lastName >> position >> department >> salary) {
             int randPos = rand() % (employees.getSize() + 1);
             employees.insert(Employee(standing, ssnID, firstName, lastName, position, department, salary), randPos);
+            employees.print();
+            cout << "Inserted at position " << randPos << "\n" << endl;
         }
     }
 

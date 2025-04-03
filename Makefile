@@ -12,3 +12,6 @@ clean:
 
 r:
 	./employee.exe
+
+zip:
+	zip A7_Mabery_Jonathan.zip *.h *.cpp *.pdf Makefile
